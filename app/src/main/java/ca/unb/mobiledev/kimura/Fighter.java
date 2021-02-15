@@ -18,10 +18,8 @@ public class Fighter {
 
     private int[] record; //([wins, losses, nc])
 
-    private String belt; //(weight class belt won in, NULL if no belt held)
-
     public Fighter(String firstName, String lastName, String nickName, String height, double weight,
-                   double reach, String stance, int[] record, String belt) {
+                   double reach, String stance, int[] record) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickName = nickName;
@@ -30,7 +28,6 @@ public class Fighter {
         this.reach = reach;
         this.stance = stance;
         this.record = record;
-        this.belt = belt;
     }
 
     public String getFirstName() {
@@ -63,9 +60,5 @@ public class Fighter {
 
     public int[] getRecord() {
         return this.record;
-    }
-
-    public String getBelt() {
-        return this.belt;
     }
 }
