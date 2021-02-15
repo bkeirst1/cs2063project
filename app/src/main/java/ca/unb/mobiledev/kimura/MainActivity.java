@@ -2,6 +2,7 @@ package ca.unb.mobiledev.kimura;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -15,11 +16,15 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import android.view.View;
+import android.widget.Button;
+
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Fighter> fighters;
 
     private ArrayList<Event> events;
+    private Button rosterButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +39,29 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        for(Fighter fighter: fighters) {
-//            System.out.println(fighter.getLastName());
-//        }
-//        for(Event event: events) {
-//            System.out.println(event.getTitle());
-//        }
+        for(Fighter fighter: fighters) {
+            System.out.println(fighter.getLastName());
+        }
+        for(Event event: events) {
+            System.out.println(event.getTitle());
+        }
         //NOTE<----NEED TO FIND SOME WAY TO WAIT FOR SCRAPEDATA() METHOD TO FINISH BEFORE ACCESSING ARRAYS.
+
+        rosterButton = findViewById(R.id.btnRoster);
+        rosterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Roster.class);
+
+                // TODO 3:
+                //  Launch the Activity using the above intent. For more information
+                //  consult the Android API documentation for starting activities:
+                //  https://developer.android.com/reference/android/app/Activity#startActivity(android.content.Intent)
+
+                MainActivity.this.startActivity(intent);
+            }
+        });
+
     }
 
     public void addFighter(Fighter fighter) {
