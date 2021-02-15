@@ -1,4 +1,4 @@
-package ca.unb.mobiledev.cs2063project;
+package ca.unb.mobiledev.kimura;
 
 import androidx.appcompat.app.AppCompatActivity;
 

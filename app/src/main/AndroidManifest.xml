@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ca.unb.mobiledev.cs2063project">
+    package="ca.unb.mobiledev.kimura">
 
     <application
         android:allowBackup="true"
