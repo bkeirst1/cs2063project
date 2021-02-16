@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.os.StrictMode;
 import android.util.Log;
 
@@ -24,44 +25,27 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Fighter> fighters;
 
     private ArrayList<Event> events;
-    private Button rosterButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.e("main", "oncreate");
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
         fighters = new ArrayList<Fighter>();
         events = new ArrayList<Event>();
 
+        menuHandler();
+    }
+
+    protected void onStart() {
+        super.onStart();
         WebScraper scraper = new WebScraper(this);
         try {
             scraper.execute().get(); //SCRAPE DATA
         } catch (Exception e) {
             e.printStackTrace();
         }
-        for(Fighter fighter: fighters) {
-            System.out.println(fighter.getLastName());
-        }
-        for(Event event: events) {
-            System.out.println(event.getTitle());
-        }
-        //NOTE<----NEED TO FIND SOME WAY TO WAIT FOR SCRAPEDATA() METHOD TO FINISH BEFORE ACCESSING ARRAYS.
-
-        rosterButton = findViewById(R.id.btnRoster);
-        rosterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Roster.class);
-
-                // TODO 3:
-                //  Launch the Activity using the above intent. For more information
-                //  consult the Android API documentation for starting activities:
-                //  https://developer.android.com/reference/android/app/Activity#startActivity(android.content.Intent)
-
-                MainActivity.this.startActivity(intent);
-            }
-        });
-
     }
 
     public void addFighter(Fighter fighter) {
@@ -70,5 +54,34 @@ public class MainActivity extends AppCompatActivity {
 
     public void addEvent(Event event) {
         events.add(event);
+    }
+
+    private void menuHandler() {
+        Button rosterButton;
+        Button createButton;
+        Button compareButton;
+        rosterButton = findViewById(R.id.btnRoster);
+        rosterButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, RosterActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            MainActivity.this.startActivity(intent);
+        });
+        createButton = findViewById(R.id.btnCreate);
+        createButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, CreateActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            MainActivity.this.startActivity(intent);
+        });
+        compareButton = findViewById(R.id.btnCompare);
+        compareButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, CompareActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            MainActivity.this.startActivity(intent);
+        });
+    }
+
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
     }
 }
