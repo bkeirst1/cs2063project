@@ -31,11 +31,9 @@ public class CompareActivity extends AppCompatActivity {
         });
         eventsButton = findViewById(R.id.btnEvents);
         eventsButton.setOnClickListener(v -> {
-//            Intent intent = new Intent(CompareActivity.this, MainActivity.class);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            CompareActivity.this.startActivity(intent);
-            finish();
+            Intent intent = new Intent(CompareActivity.this, EventsActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            CompareActivity.this.startActivity(intent);
         });
         createButton = findViewById(R.id.btnCreate);
         createButton.setOnClickListener(v -> {
@@ -43,10 +41,5 @@ public class CompareActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             CompareActivity.this.startActivity(intent);
         });
-    }
-
-    public void onPause() {
-        super.onPause();
-        overridePendingTransition(0, 0);
     }
 }

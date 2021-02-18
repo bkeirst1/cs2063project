@@ -7,39 +7,39 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class CreateActivity extends AppCompatActivity {
+public class EventsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i("Create", "onCreate() called");
+        Log.i("Events", "onCreate() called");
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.create_activity);
+        setContentView(R.layout.events_activity);
 
         menuHandler();
     }
 
     private void menuHandler() {
         Button rosterButton;
-        Button eventsButton;
         Button compareButton;
+        Button createButton;
         rosterButton = findViewById(R.id.btnRoster);
         rosterButton.setOnClickListener(v -> {
-            Intent intent = new Intent(CreateActivity.this, RosterActivity.class);
+            Intent intent = new Intent(EventsActivity.this, RosterActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            CreateActivity.this.startActivity(intent);
-        });
-        eventsButton = findViewById(R.id.btnEvents);
-        eventsButton.setOnClickListener(v -> {
-            Intent intent = new Intent(CreateActivity.this, EventsActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            CreateActivity.this.startActivity(intent);
+            EventsActivity.this.startActivity(intent);
         });
         compareButton = findViewById(R.id.btnCompare);
         compareButton.setOnClickListener(v -> {
-            Intent intent = new Intent(CreateActivity.this, CompareActivity.class);
+            Intent intent = new Intent(EventsActivity.this, CompareActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            CreateActivity.this.startActivity(intent);
+            EventsActivity.this.startActivity(intent);
+        });
+        createButton = findViewById(R.id.btnCreate);
+        createButton.setOnClickListener(v -> {
+            Intent intent = new Intent(EventsActivity.this, CreateActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            EventsActivity.this.startActivity(intent);
         });
     }
 }

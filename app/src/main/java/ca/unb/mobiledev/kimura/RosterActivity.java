@@ -30,11 +30,9 @@ public class RosterActivity extends AppCompatActivity {
         Button compareButton;
         eventsButton = findViewById(R.id.btnEvents);
         eventsButton.setOnClickListener(v -> {
-//            Intent intent = new Intent(RosterActivity.this, MainActivity.class);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            RosterActivity.this.startActivity(intent);
-            finish();
+            Intent intent = new Intent(RosterActivity.this, EventsActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            RosterActivity.this.startActivity(intent);
         });
         createButton = findViewById(R.id.btnCreate);
         createButton.setOnClickListener(v -> {
@@ -48,10 +46,5 @@ public class RosterActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             RosterActivity.this.startActivity(intent);
         });
-    }
-
-    public void onPause() {
-        super.onPause();
-        overridePendingTransition(0, 0);
     }
 }

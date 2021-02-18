@@ -18,17 +18,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RosterActivity"
-            android:noHistory="true">
+            android:name=".RosterActivity">
         </activity>
         <activity
-            android:name=".CreateActivity"
-            android:noHistory="true">
+            android:name=".CreateActivity">
         </activity>
         <activity
-            android:name=".CompareActivity"
-            android:noHistory="true">
-
+            android:name=".CompareActivity">
+        </activity>
+        <activity
+            android:name=".EventsActivity">
         </activity>
     </application>
 
