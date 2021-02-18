@@ -6,14 +6,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         tools:ignore="MissingConstraints">
         <TextView
-            android:id="@+id/dateView"
-            android:layout_width="wrap_content"
+            android:id="@+id/titleView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:textStyle="bold" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -22,12 +23,11 @@
             android:gravity="center_vertical"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/titleView"
+                android:id="@+id/dateView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
             <TextView
                 android:id="@+id/locationView"
                 android:layout_width="match_parent"

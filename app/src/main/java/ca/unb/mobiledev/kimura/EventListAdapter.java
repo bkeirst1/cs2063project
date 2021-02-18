@@ -2,6 +2,7 @@ package ca.unb.mobiledev.kimura;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,9 +36,13 @@ public class EventListAdapter extends ArrayAdapter {
         TextView dateTextField = (TextView)rowView.findViewById(R.id.dateView);
         TextView titleTextField = (TextView)rowView.findViewById(R.id.titleView);
         TextView locationTextField = (TextView)rowView.findViewById(R.id.locationView);
-        dateTextField.setText(datesArray[i]);
-        titleTextField.setText(titlesArray[i]);
-        locationTextField.setText(locationsArray[i]);
+        dateTextField.setText(datesArray[i].replaceAll(",", ", "));
+        String title = titlesArray[i];
+        if(title.length() > 35) {
+            title = titlesArray[i].substring(0, 32) + "...";
+        }
+        titleTextField.setText(title);
+        locationTextField.setText(locationsArray[i].replaceAll(",", ", ").replace("Las", "Las "));
         return rowView;
     }
 }

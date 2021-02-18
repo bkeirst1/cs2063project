@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class EventsActivity extends AppCompatActivity {
 
@@ -24,7 +25,8 @@ public class EventsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.events_activity);
-
+        Event event = new Event("test",-1, "LasVegas,Nevada,USA","March29,2021");
+        Data.getInstance().getEvents().add(event);
         getData();
         menuHandler();
     }
@@ -42,7 +44,7 @@ public class EventsActivity extends AppCompatActivity {
                 eventType = "" + events.get(i).getNumber();
             }
             datesArray[i] = events.get(i).getDate();
-            titlesArray[i] = "UFC" + eventType + ": " + events.get(i).getTitle();
+            titlesArray[i] = "UFC " + eventType + ": " + events.get(i).getTitle();
             locationsArray[i] = events.get(i).getLocation();
         }
         EventListAdapter adapter = new EventListAdapter(this, datesArray, titlesArray, locationsArray);
