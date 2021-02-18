@@ -3,15 +3,10 @@ package ca.unb.mobiledev.kimura;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class EventsActivity extends AppCompatActivity {
 
@@ -25,8 +20,7 @@ public class EventsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.events_activity);
-        Event event = new Event("test",-1, "LasVegas,Nevada,USA","March29,2021");
-        Data.getInstance().getEvents().add(event);
+
         getData();
         menuHandler();
     }
@@ -50,6 +44,11 @@ public class EventsActivity extends AppCompatActivity {
         EventListAdapter adapter = new EventListAdapter(this, datesArray, titlesArray, locationsArray);
         listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            Intent intent = new Intent(EventsActivity.this, EventDetailsActivity.class);
+            intent.putExtra("position", position+"");
+            startActivity(intent);
+        });
     }
 
     private void menuHandler() {

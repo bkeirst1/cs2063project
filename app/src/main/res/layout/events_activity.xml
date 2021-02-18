@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -16,16 +15,17 @@
             android:adjustViewBounds="true"
             android:paddingTop="8dp"
             android:paddingBottom="6dp"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            android:background="#BABABA"/>
+            android:background="#A8A8A8"/>
         <ListView
             android:id="@+id/list_view"
             android:scrollbars = "vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:paddingBottom="45dp"/>
     </LinearLayout>
     <include layout="@layout/menu"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

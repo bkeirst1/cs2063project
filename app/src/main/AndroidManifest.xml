@@ -29,6 +29,9 @@
         <activity
             android:name=".EventsActivity">
         </activity>
+        <activity
+            android:name=".EventDetailsActivity">
+        </activity>
     </application>
 
 </manifest>
