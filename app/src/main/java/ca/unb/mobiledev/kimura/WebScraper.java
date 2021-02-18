@@ -82,7 +82,7 @@ public class WebScraper extends AsyncTask {
                         inputLine = reader.readLine();
                         location = inputLine.replaceAll("\\s+","");
                         Event event = new Event(title, number, location, date);
-                        ((MainActivity)context).addEvent(event);
+                        Data.getInstance().getEvents().add(event);
                     }
                     entry++;
                 }
@@ -172,7 +172,7 @@ public class WebScraper extends AsyncTask {
                             d = Integer.parseInt(inputLine);
                             record = new int[]{w,l,d};
                             Fighter fighter = new Fighter(firstName,lastName, nickName, height, weight, reach, stance, record);
-                            ((MainActivity)context).addFighter(fighter);
+                            Data.getInstance().getFighters().add(fighter);
                         }
                         entry++;
                     }

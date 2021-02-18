@@ -18,13 +18,11 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
-
-    private ArrayList<Fighter> fighters;
-
-    private ArrayList<Event> events;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,56 +30,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
-        fighters = new ArrayList<Fighter>();
-        events = new ArrayList<Event>();
-
-        menuHandler();
+        switchContexts();
     }
 
     protected void onStart() {
         super.onStart();
         WebScraper scraper = new WebScraper(this);
         try {
-            scraper.execute().get(); //SCRAPE DATA
+            scraper.execute().get();//SCRAPE DATA
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void addFighter(Fighter fighter) {
-        fighters.add(fighter);
+    private void switchContexts() {
+        Intent intent = new Intent(MainActivity.this, EventsActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        MainActivity.this.startActivity(intent);
     }
 
-    public void addEvent(Event event) {
-        events.add(event);
-    }
-
-    private void menuHandler() {
-        Button rosterButton;
-        Button createButton;
-        Button compareButton;
-        rosterButton = findViewById(R.id.btnRoster);
-        rosterButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, RosterActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            MainActivity.this.startActivity(intent);
-        });
-        createButton = findViewById(R.id.btnCreate);
-        createButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, CreateActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            MainActivity.this.startActivity(intent);
-        });
-        compareButton = findViewById(R.id.btnCompare);
-        compareButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, CompareActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            MainActivity.this.startActivity(intent);
-        });
-    }
-
-    public void onPause() {
-        super.onPause();
-        overridePendingTransition(0, 0);
-    }
 }
