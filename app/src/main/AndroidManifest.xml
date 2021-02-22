@@ -21,6 +21,9 @@
             android:name=".RosterActivity">
         </activity>
         <activity
+            android:name=".RosterDetailsActivity">
+        </activity>
+        <activity
             android:name=".CreateActivity">
         </activity>
         <activity
