@@ -1,10 +1,15 @@
 package ca.unb.mobiledev.kimura;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,7 +29,10 @@ public class RosterActivity extends AppCompatActivity {
 
         getData();
         menuHandler();
+
+
     }
+
 
     private void getData() {
         fighters = Data.getInstance().getFighters();
@@ -44,6 +52,19 @@ public class RosterActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
+
+
+    //public boolean onCreateOptionsMenu(Menu menu) {
+
+        // Get the SearchView and set the searchable configuration
+       // SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+       // SearchView searchView = (SearchView) menu.findItem(R.id.sFighter).getActionView();
+        // Assumes current activity is the searchable activity
+       // searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        //searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+
+       // return true;
+   // }
 
     private void menuHandler() {
         Button eventsButton;
@@ -67,5 +88,6 @@ public class RosterActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
             RosterActivity.this.startActivity(intent);
         });
+
     }
 }
