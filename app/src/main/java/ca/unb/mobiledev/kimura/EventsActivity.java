@@ -47,6 +47,7 @@ public class EventsActivity extends AppCompatActivity {
         listView.setOnItemClickListener((parent, view, position, id) -> {
             Intent intent = new Intent(EventsActivity.this, EventDetailsActivity.class);
             intent.putExtra("position", position+"");
+            intent.putParcelableArrayListExtra("fights", events.get(position).getFights());
             startActivity(intent);
         });
     }
