@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class WebScraper extends AsyncTask {
 
@@ -25,7 +26,6 @@ public class WebScraper extends AsyncTask {
         String url = protocol + "://" + domainName + ":" + portNumber + "/" + documentPath;  // CREATE A STRING OF THE URL
         BufferedReader eventReader = scrape(url);
         getEvents(eventReader);
-
         getFighters();
         return null;
     }
@@ -47,6 +47,40 @@ public class WebScraper extends AsyncTask {
         return reader;
     }
 
+    private ArrayList<Fight> getFights(String path) throws IOException {
+        String protocol = "http";
+        String domainName = "ufcstats.com";
+        String portNumber = "80";
+        String url = protocol + "://" + domainName + ":" + portNumber + "/" + path;  // CREATE A STRING OF THE URL
+        BufferedReader reader = scrape(url);
+        ArrayList<Fight> fights = new ArrayList<Fight>();
+        String inputLine;
+        for(int i = 0; i < 162; i++) {
+            reader.readLine();
+        }
+        String fighterOne = "";
+        String fighterTwo = "";
+        String weightClass = "";
+        while((inputLine = reader.readLine()) != null) { // TRAVERSE FILE LINE BY LINE
+            if(inputLine.contains("b-link b-link_style_black")) {
+                fighterOne = reader.readLine().replaceAll("\\s+","");
+                if(fighterOne.contains("</p>")) {
+                    continue;
+                }
+                for(int i = 0; i < 7; i++) {
+                    reader.readLine();
+                }
+                fighterTwo = reader.readLine().replaceAll("\\s+","");
+                for(int i = 0; i < 31; i++) {
+                    reader.readLine();
+                }
+                weightClass = reader.readLine().replaceAll("\\s+|<br>","");
+                fights.add(new Fight(fighterOne, fighterTwo, weightClass));
+            }
+        }
+        return fights;
+    }
+
     private void getEvents(BufferedReader reader) {
         String inputLine;
         int entry = 0;
@@ -56,12 +90,15 @@ public class WebScraper extends AsyncTask {
                 if(inputLine.contains("b-statistics__table-row") && !inputLine.contains("$0")) {
                     if(entry > 1) {
                         String title;
+                        ArrayList<Fight> fights = null;
                         int number = 0;
                         String location;
                         String date;
-                        for(int i = 0; i < 4; i++) {
+                        for(int i = 0; i < 3; i++) {
                             reader.readLine();
                         }
+                        String fightsUrl = reader.readLine().split("\"")[1];
+                        fights = getFights(fightsUrl.split(".com/")[1]);
                         inputLine = reader.readLine();
                         if(inputLine.contains("Fight Night")) {
                             number = -1;
@@ -79,7 +116,7 @@ public class WebScraper extends AsyncTask {
                         }
                         inputLine = reader.readLine();
                         location = inputLine.replaceAll("\\s+","");
-                        Event event = new Event(title, number, location, date);
+                        Event event = new Event(title, number, location, date, fights);
                         Data.getInstance().getEvents().add(event);
                     }
                     entry++;

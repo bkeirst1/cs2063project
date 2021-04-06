@@ -1,5 +1,7 @@
 package ca.unb.mobiledev.kimura;
 
+import java.util.ArrayList;
+
 public class Event {
 
     private String title; //(__ vs. __)
@@ -10,11 +12,14 @@ public class Event {
 
     private String date;
 
-    public Event(String title, int number, String location, String date) {
+    private ArrayList<Fight> fights;
+
+    public Event(String title, int number, String location, String date, ArrayList<Fight> fights) {
         this.title = title;
         this.number = number;
         this.location = location;
         this.date = date;
+        this.fights = fights;
     }
 
     public String getTitle() {
@@ -31,5 +36,9 @@ public class Event {
 
     public String getDate() {
         return this.date;
+    }
+
+    public ArrayList<Fight> getFights() {
+        return fights;
     }
 }
