@@ -1,15 +1,10 @@
 package ca.unb.mobiledev.kimura;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.os.Bundle;
 import android.content.Intent;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
