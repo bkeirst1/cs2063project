@@ -26,6 +26,10 @@
             android:textSize="24sp"
             android:paddingBottom="40dp"
             android:layout_width="wrap_content"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#EDEDED"/>
         <ListView
             android:id="@+id/fight_list_view"
             android:scrollbars = "vertical"
