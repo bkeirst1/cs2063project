@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.EditText;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class CreateActivity extends AppCompatActivity {
@@ -15,6 +17,12 @@ public class CreateActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.create_activity);
 
+        EditText title = (EditText)(findViewById(R.id.eventTitle));
+        EditText date = (EditText)(findViewById(R.id.date));
+        EditText location = (EditText)(findViewById(R.id.location));
+        title.setHint("Event Title");
+        date.setHint("Date");
+        location.setHint("Location");
         menuHandler();
     }
 
